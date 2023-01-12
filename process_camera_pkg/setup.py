@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'devel_pkg'
+package_name = 'process_camera_pkg'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'main_node = devel_pkg.main_node:main'
+            'process_camera_img = process_camera_pkg.process_camera_img:main'
         ],
     },
 )

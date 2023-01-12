@@ -26,12 +26,13 @@ class ImageParser(Node):
         height, width, encoding = img_msg.height, img_msg.width, img_msg.encoding
         # Store image and 
         self.image = np.array(img_msg.data).reshape((height,width,3))
-        self.image = cv2.cvtColor(self.image, cv2.COLOR_RGB2BGR)s
+        self.image = cv2.cvtColor(self.image, cv2.COLOR_RGB2BGR)
         self.detect_ball_in_image()
     
     def detect_ball_in_image(self):
-        cv2.imshow("Court de tennis",self.image)
+        cv2.imshow("Court de tennis BGR",self.image)
         cv2.waitKey(1)
+        
 
 def main(args=None):
     rclpy.init(args=args)
