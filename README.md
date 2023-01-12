@@ -22,14 +22,16 @@ Ceci est un template de dépôt Git pour le cours d'ingénierie système et mod�
 
 ### Membres
 
-###### A compléter avec les membres du groupe.
+Damien Esnault
+Mirado Rajaomarosata
+Nicolas Defour
+Maël Godard
+Hugo Yverneau 
 
 
 ### Gestion de projet
 
-###### A compléter avec le lien vers votre [Taiga](https://taiga.io).
-
-
+https://tree.taiga.io/project/d_snlt_work_account-federer-reconversions/admin/project-profile/details
 
 ## Structure du dépôt
 
