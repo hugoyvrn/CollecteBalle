@@ -7,26 +7,68 @@ Ceci est un template de dépôt Git pour le cours d'ingénierie système et mod�
 
 ### Dépendences
 
-###### A compléter avec la/les dépendences.
+Install ROS2 foxy :  
+https://docs.ros.org/en/foxy/Installation.html
 
-
-### Démarrer la simulation
-
-###### A compléter avec la/les commande(s) à lancer.
+Install Gazebo :
 ```bash
-# TODO
+sudo apt install ros-foxy-gazebo-ros
+# sudo apt install ros-foxy-gazebo-* # if the previous line is not enough
 ```
 
+Install rqt_robot_steering :  
+In a terminal run 
+```bash
+sudo apt-get install ros-foxy-rqt-robot-steering
+```
+
+
+
+### Clone the repository
+In the `src/` directory of your ROS2 workspace clone the git repository :
+```bash
+git clone https://github.com/federer-conversion/CollecteBalle.git
+```
+### Build
+In the root of your ROS2 workspace run :
+```bash
+source /opt/ros/foxy/setup.bash
+colcon build --packages-select tennis_court robot_description
+source install/setup.bash
+```
+
+### Launch
+
+In a first terminal, in the root of your ROS2 workspace run :
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 launch tennis_court tennis_court.launch.py
+```
+
+In another terminal run, in the root of your ROS2 workspace:
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 launch robot_description display.launch.py
+```
+
+In another terminal run, in the root of your ROS2 workspace:
+```bash
+ros2 run rqt_robot_steering rqt_robot_steering --force-discover
+```
+
+Now enjoy the tennis court with the robot.
 
 ## Groupe
 
 ### Membres
 
-Damien Esnault
-Mirado Rajaomarosata
-Nicolas Defour
-Maël Godard
-Hugo Yverneau 
+* Damien Esnault
+* Mirado Rajaomarosata
+* Nicolas Defour
+* Maël Godard
+* Hugo Yverneau 
 
 
 ### Gestion de projet
