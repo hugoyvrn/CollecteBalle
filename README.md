@@ -7,16 +7,18 @@ Ceci est un template de dépôt Git pour le cours d'ingénierie système et mod�
 
 ### Dépendences
 
-###### A compléter avec la/les dépendences.
-
 
 ### Démarrer la simulation
 
-###### A compléter avec la/les commande(s) à lancer.
+Pour lancer la détection des balles et des zones de dépôt à partir de l'image issue de la caméra, éxécutez les commandes suivantes :
+
 ```bash
-# TODO
+colcon build --packages-select process_camera_pkg
+. install/setup.bash
+ros2 run process_camera_pkg process_camera_img --ros-args -p display_mode:=False
 ```
 
+<ins>Note:</ins> Modifiez la valeur de display_mode ('True' ou 'False') pour choisir d'afficher les images issuent du traitement des données de la caméra (voir le terrain ainsi que les balles et zones détectées par le programme) 
 
 ## Groupe
 
