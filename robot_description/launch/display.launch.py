@@ -34,9 +34,9 @@ def generate_launch_description():
             [ThisLaunchFileDir(), '/tennis_court.launch.py']),
     )
     spawn_entity = launch_ros.actions.Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-entity', 'sam_bot', '-topic', 'robot_description'],
+    	package='gazebo_ros', 
+    	executable='spawn_entity.py',
+        arguments=['-entity', 'sam_bot', '-topic', 'robot_description','-x','1','-y','1'],
         output='screen'
     )
     robot_localization_node = launch_ros.actions.Node(
