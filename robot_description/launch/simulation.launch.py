@@ -28,15 +28,16 @@ def generate_launch_description():
         name='joint_state_publisher',
         condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
     )
-    
+
     tennis_court_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [ThisLaunchFileDir(), '/tennis_court.launch.py']),
     )
     spawn_entity = launch_ros.actions.Node(
-    	package='gazebo_ros', 
-    	executable='spawn_entity.py',
-        arguments=['-entity', 'sam_bot', '-topic', 'robot_description','-x','1','-y','1'],
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=['-entity', 'sam_bot', '-topic',
+                   'robot_description', '-x', '1', '-y', '1'],
         output='screen'
     )
     robot_localization_node = launch_ros.actions.Node(
@@ -56,18 +57,22 @@ def generate_launch_description():
         parameters=["--force-discover"]
     )    # ros2 run rqt_robot_steering rqt_robot_steering --force-discover
 
+    display_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [ThisLaunchFileDir(), '/display.launch.py']),
+    )
     return launch.LaunchDescription([
-        launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
-                                             description='Flag to enable joint_state_publisher_gui'),
-        launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                             description='Absolute path to robot urdf file'),
-        launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
-                                             description='Flag to enable use_sim_time'),
-        # tennis_court_launch,
-
-        joint_state_publisher_node,
-        robot_state_publisher_node,
-        spawn_entity,
-        robot_localization_node,
-        rqt_robot_steering_node, 
+        # launch.actions.DeclareLaunchArgument(name='gui', default_value='True',
+        #                                      description='Flag to enable joint_state_publisher_gui'),
+        # launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
+        #                                      description='Absolute path to robot urdf file'),
+        # launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
+        #                                      description='Flag to enable use_sim_time'),
+        display_launch,
+        tennis_court_launch,
+        # joint_state_publisher_node,
+        # robot_state_publisher_node,
+        # spawn_entity,
+        # robot_localization_node,
+        # rqt_robot_steering_node,
     ])
