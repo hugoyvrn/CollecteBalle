@@ -2,7 +2,6 @@
 
 PO: Hugo Yverneau
 
-
 ## Bilan
 
 Pourcentage de tâches réalisées: 100 % : les besoins ont été défini volontairement de manière assez flou car le but de ce premeir sprint était surtout d'appréhender les différentes tâches du projet.
