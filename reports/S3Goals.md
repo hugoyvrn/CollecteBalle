@@ -12,23 +12,24 @@ PO: Maël Godard
 
 ## Tâches à réaliser
 
-- Guidage attrape balle
-    + Suivi de point
-- Capturer position balle
-    - Détection/Classification balle
-    - Publisher positions balles
-- Ne pas perdre la balle
-    - Modification géométrie collecteur
-- Livrables clients
-    - Visuel
-    - Documentation technique
-    - Chiffrage
+- Modification de la pince dans gazebo
+    - Modifiaction de la géométrie
+    - Ajout de liaisons pilotables
+- Motorisation/commande de la pince
+    - Noeud ros subscriber bouton
+    - Commande de pivot gazebo via ros
+- Version 1 de guidage
+    - Mise en place du noeud
+- Modification du mesh bâti
+    - Création du modèle
+    - Implémentation dans gazebo
+- Récupération position du robot
+- Choix du nom du robot
 
 
 ## Challenges techniques
 
-- Guidage attrape balle
-    - Choix du type de guidage (Bug, Champ de potentiel, A star)
+- TBD
 
 
 
