@@ -44,17 +44,15 @@ source install/setup.bash
 
 ### Launch
 
-In a first terminal, in the root of your ROS2 workspace run :
+In a terminal :
+Be sure you have already sourced, if not :
 ```bash
-source /opt/ros/foxy/setup.bash
-source install/setup.bash
-ros2 launch tennis_court tennis_court.launch.py
+source /opt/ros/foxy/setup.bash # if your foxy is not sourced
+source install/setup.bash # ifyour workspace is not sourced and if your are in the root of your worksapce
 ```
 
-In another terminal run, in the root of your ROS2 workspace:
+The launch the code :
 ```bash
-source /opt/ros/foxy/setup.bash
-source install/setup.bash
 ros2 launch robot_description display.launch.py
 ```
 
