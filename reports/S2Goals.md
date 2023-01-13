@@ -1,19 +1,35 @@
-# Objectifs du xx/xx/xxxx
+# Objectifs du 13/01/2023 (Matin)
 
-PO: ...
+PO: Mirado Rajaomarosata
 
 
 ## Fonctionnalités attendues
 
-###### A compléter avec la liste des attentes fonctionnelles du produit en fin de sprint.
+- Guidage attrape balle  
+- Capturer position balle  
+- Ne pas perdre la balle  
+- Le robot est documenté (Visuel, DT, Chiffrage)  
 
 
 ## Tâches à réaliser
 
-###### A compléter avec la liste macroscopique des tâches à réaliser afin d'implémenter les fonctionnalités détaillées précédemment.
+- Guidage attrape balle
+    + Suivi de point
+- Capturer position balle
+    - Détection/Classification balle
+    - Publisher positions balles
+- Ne pas perdre la balle
+    - Modification géométrie collecteur
+- Livrables clients
+    - Visuel
+    - Documentation technique
+    - Chiffrage
 
 
 ## Challenges techniques
 
-###### A compléter avec la liste argumentée des challenges et verrous techniques liées aux tâches à réaliser.
+- Guidage attrape balle
+    - Choix du type de guidage (Bug, Champ de potentiel, A star)
+
+
 
