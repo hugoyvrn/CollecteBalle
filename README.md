@@ -2,33 +2,88 @@
 
 Ceci est un template de dépôt Git pour le cours d'ingénierie système et modélisation robotique à l'ENSTA Bretagne en 2023.
 
-
 ## Lancer la simulation
 
 ### Dépendences
 
+Install ROS2 foxy :  
+https://docs.ros.org/en/foxy/Installation.html
 
-### Démarrer la simulation
+Install Gazebo :
+```bash
+sudo apt install ros-foxy-gazebo-ros
+# sudo apt install ros-foxy-gazebo-* # if the previous line is not enough
+```
 
-Pour lancer la détection des balles et des zones de dépôt à partir de l'image issue de la caméra, éxécutez les commandes suivantes :
+Install rqt_robot_steering :
+```bash
+sudo apt-get install ros-foxy-rqt-robot-steering
+```
+
+Install Python3 and OpenCV :
+```bash
+sudo apt install python3
+pip install cv2
+```
+
+### Clone the repository
+
+In the `src/` directory of your ROS2 workspace clone the git repository :
+```bash
+git clone https://github.com/federer-conversion/CollecteBalle.git
+```
+
+### Build
+
+In the root of your ROS2 workspace run :
+```bash
+source /opt/ros/foxy/setup.bash
+colcon build --packages-select tennis_court robot_description process_camera_pkg
+source install/setup.bash
+```
+
+### Launch
+
+In a first terminal, in the root of your ROS2 workspace run :
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 launch tennis_court tennis_court.launch.py
+```
+
+In another terminal run, in the root of your ROS2 workspace:
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 launch robot_description display.launch.py
+```
+
+In another terminal, run in the root of your ROS2 workspace:
 
 ```bash
-colcon build --packages-select process_camera_pkg
-. install/setup.bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
 ros2 run process_camera_pkg process_camera_img --ros-args -p display_mode:=False
 ```
 
-<ins>Note:</ins> Modifiez la valeur de display_mode ('True' ou 'False') pour choisir d'afficher les images issuent du traitement des données de la caméra (voir le terrain ainsi que les balles et zones détectées par le programme) 
+<ins>Note:</ins> Set the display_mode value ('True' or 'False') depending of if you want to see the camera image and the where the balls are detected on this image
+
+In another terminal run, in the root of your ROS2 workspace:
+```bash
+ros2 run rqt_robot_steering rqt_robot_steering --force-discover
+```
+
+Now enjoy the tennis court with the robot.
 
 ## Groupe
 
 ### Membres
 
-Damien Esnault
-Mirado Rajaomarosata
-Nicolas Defour
-Maël Godard
-Hugo Yverneau 
+* Damien Esnault
+* Mirado Rajaomarosata
+* Nicolas Defour
+* Maël Godard
+* Hugo Yverneau 
 
 
 ### Gestion de projet
