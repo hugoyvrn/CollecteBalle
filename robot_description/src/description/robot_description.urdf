@@ -39,6 +39,16 @@
   </xacro:macro>
   
   <!-- Robot Base -->
+  <gazebo reference="base_link">
+    <visual>  
+    <material>  
+      <ambient>0.7 0.3 0.0 1.0</ambient>  
+      <diffuse>0.7 0.3 0.0 1.0</diffuse>  
+      <specular>0.7 0.3 0.0 1.0</specular>  
+      <emissive>0.7 0.3 0.0 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
   <link name="base_link">
     <visual>
       <geometry>
@@ -70,6 +80,26 @@
   </joint>
 
   <!-- Wheels -->
+  <gazebo reference="drivewhl_l_link">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
+  <gazebo reference="drivewhl_r_link">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
   <xacro:macro name="wheel" params="prefix x_reflect y_reflect">
     <link name="${prefix}_link">
       <visual>
@@ -103,6 +133,16 @@
   <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
   <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" />
 
+  <gazebo reference="front_caster">
+    <visual>  
+    <material>  
+      <ambient>0. 0. 0.0 1.0</ambient>  
+      <diffuse>0. 0. 0.0 1.0</diffuse>  
+      <specular>0. 0. 0.0 1.0</specular>  
+      <emissive>0. 0. 0.0 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
   <link name="front_caster">
     <visual>
       <geometry>
@@ -130,14 +170,13 @@
   </joint>
 
   <!-- Attrapeur -->
-
   <gazebo reference="segment_central">
     <visual>  
     <material>  
-      <ambient>0.30 0.15 0.0 1.0</ambient>  
-      <diffuse>0.30 0.15 0.0 1.0</diffuse>  
-      <specular>0.30 0.15 0.0 1.0</specular>  
-      <emissive>0.30 0.15 0.0 1.0</emissive>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
     </material>  
     </visual> 
   </gazebo>
@@ -167,7 +206,17 @@
     <origin xyz="0.25 0.0 0" rpy="0 0 ${0.5 * pi}"/>
   </joint>
 
-    <link name="segment_d1">
+  <gazebo reference="segment_d1">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
+  <link name="segment_d1">
     <visual>
       <geometry>
         <box size="0.3 0.05 0.2"/>
@@ -192,7 +241,17 @@
     <origin xyz="-0.30 -0.07 0" rpy="0 0 ${0.16* pi}"/>
   </joint>
 
-      <link name="segment_d2">
+<gazebo reference="segment_d2">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
+  <link name="segment_d2">
     <visual>
       <geometry>
         <box size="0.3 0.05 0.2"/>
@@ -217,8 +276,17 @@
     <origin xyz="-0.30 -0.07 0" rpy="0 0 ${0.16* pi}"/>
   </joint>
 
-
-    <link name="segment_g1">
+  <gazebo reference="segment_g1">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
+  <link name="segment_g1">
     <visual>
       <geometry>
         <box size="0.3 0.05 0.2"/>
@@ -243,7 +311,17 @@
     <origin xyz="0.30 -0.07 0" rpy="0 0 ${-0.16* pi}"/>
   </joint>
 
-      <link name="segment_g2">
+  <gazebo reference="segment_g2">
+    <visual>  
+    <material>  
+      <ambient>1. 0.3 0.3 1.0</ambient>  
+      <diffuse>1. 0.3 0.3 1.0</diffuse>  
+      <specular>1. 0.3 0.3 1.0</specular>  
+      <emissive>1. 0.3 0.3 1.0</emissive>  
+    </material>  
+    </visual> 
+  </gazebo>
+  <link name="segment_g2">
     <visual>
       <geometry>
         <box size="0.3 0.05 0.2"/>
