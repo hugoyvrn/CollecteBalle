@@ -24,7 +24,7 @@ Install Python3, OpenCV and other required package :
 ```bash
 sudo apt install python3
 pip install cv2
-pip install evdev re select
+pip install evdev
 ```
 
 ### Clone the repository
