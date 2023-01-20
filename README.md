@@ -1,3 +1,4 @@
+[![tennis-court-foxy](https://github.com/nathan-teaching/CollecteBalle/actions/workflows/tennis_court-foxy.yaml/badge.svg)](https://github.com/nathan-teaching/CollecteBalle/actions/workflows/tennis_court-foxy.yaml)
 # Tennis Ball Collector
 
 Ceci est un template de dépôt Git pour le cours d'ingénierie système et modélisation robotique à l'ENSTA Bretagne en 2023.
@@ -131,6 +132,8 @@ Le dossier `docs` contient tous les documents utiles au projet:
 - Des [instructions pour utiliser Git](docs/GitWorkflow_fork.md)
 - Un [Mémo pour ROS 2 et Gazebo](docs/Memo_ROS2.pdf)
 - Les [slides de la présentation Git](docs/GitPresentation.pdf)
+
+Pour faire bouger des pièces entre elles : [gazebo_ros2_control](https://github.com/ros-controls/gazebo_ros2_control)
 
 
 ### Rapports
