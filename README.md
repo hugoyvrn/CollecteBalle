@@ -43,6 +43,7 @@ In the root of your ROS2 workspace run :
 ```bash
 source /opt/ros/foxy/setup.bash
 colcon build --packages-select tennis_court robot_description process_camera_pkg guidage_pkg remote_controller_pkg
+# ou colcon build
 source install/setup.bash
 ```
 
@@ -77,6 +78,13 @@ ros2 run remote_controller_pkg remote_control_robot
 ```
 
 Now enjoy the tennis court with the robot.
+
+Note: if you want to use the debug mode of the camera processing algorithm
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 run process_camera_pkg process_camera_img --ros-args -p display_mode:=True
+```
 
 
 ### launch if `ros2 launch robot_description simulation.launch.py` is not working : 
