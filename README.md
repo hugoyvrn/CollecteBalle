@@ -101,6 +101,14 @@ ros2 launch tennis_court tennis_court.launch.py
 * Maël Godard
 * Hugo Yverneau 
 
+### Data sheet
+
+Vous trouverez les documentations de communication entre client et équipes ici :
+- Design du robot : [robot_design](data_sheet/robot_design.jpg)
+- Chiffage prix : [chiffrage](data_sheet/prix.txt)
+- Documentation technique : [Doc tech](data_sheet/doc_tec.txt)
+
+
 
 ### Gestion de projet
 
