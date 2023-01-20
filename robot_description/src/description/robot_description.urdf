@@ -62,7 +62,7 @@
       <origin xyz="-0.2 -0.15 0" rpy="${pi/2} 0 0" />
       <geometry>
       <!-- TO DO HUGO chemin-->
-        <mesh filename="/home/damien/Documents/Ecole/Annee3/IS/projet_is_ws/src/CollecteBalle/robot_description/meshes/chassis_is.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robot_description/meshes/chassis_is.dae" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Cyan">
         <color rgba="0 1.0 1.0 1.0"/>
