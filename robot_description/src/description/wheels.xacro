@@ -7,6 +7,7 @@
     <xacro:macro name="wheels">
 
 
+
         <!-- Wheels -->
         <gazebo reference="drivewhl_l_link">
             <visual>
@@ -57,6 +58,9 @@
                 <axis xyz="0 1 0"/>
             </joint>
         </xacro:macro>
+
+        <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
+        <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" />
 
 
     </xacro:macro>

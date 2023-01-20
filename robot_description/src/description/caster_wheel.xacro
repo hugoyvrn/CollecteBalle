@@ -9,11 +9,6 @@
 
 
 
-
-
-        <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
-        <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" />
-        <xacro:caster_wheel/>
         <gazebo reference="front_caster">
             <mu1>0</mu1>
             <mu2>0</mu2>
