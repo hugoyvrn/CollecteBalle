@@ -21,7 +21,7 @@ Pourcentage de tâches réalisées:
 
 ### Conseils pour le prochain PO
 
-
+- Modifier la pince car perte de balles si coincé contre le mur
 
 ## Mesures à garder
 
