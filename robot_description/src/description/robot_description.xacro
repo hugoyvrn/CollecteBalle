@@ -13,6 +13,7 @@
   <xacro:base/>
   <xacro:battery/>
   <xacro:wheels/>
+  <xacro:caster_wheel/>
 
   <xacro:collector/>
   <xacro:control/>
