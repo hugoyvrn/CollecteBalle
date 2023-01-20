@@ -15,9 +15,11 @@ sudo apt install ros-foxy-gazebo-ros
 # sudo apt install ros-foxy-gazebo-* # if the previous line is not enough
 ```
 
-Install rqt_robot_steering :
+Install ros package :
 ```bash
 sudo apt-get install ros-foxy-rqt-robot-steering
+sudo apt-get install ros-foxy-robot-localization
+sudo apt-get install ros-foxy-rqt-robot-xacro
 ```
 
 Install Python3 and OpenCV :
