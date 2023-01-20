@@ -20,10 +20,11 @@ Install rqt_robot_steering :
 sudo apt-get install ros-foxy-rqt-robot-steering
 ```
 
-Install Python3 and OpenCV :
+Install Python3, OpenCV and other required package :
 ```bash
 sudo apt install python3
 pip install cv2
+pip install evdev re select
 ```
 
 ### Clone the repository
@@ -38,7 +39,7 @@ git clone https://github.com/federer-conversion/CollecteBalle.git
 In the root of your ROS2 workspace run :
 ```bash
 source /opt/ros/foxy/setup.bash
-colcon build --packages-select tennis_court robot_description process_camera_pkg
+colcon build --packages-select tennis_court robot_description process_camera_pkg guidage_pkg remote_controller_pkg
 source install/setup.bash
 ```
 
@@ -62,6 +63,14 @@ In another terminal, run in the root of your ROS2 workspace:
 source /opt/ros/foxy/setup.bash
 source install/setup.bash
 ros2 run guidage_pkg guidage
+```
+
+In another terminal, if you want to control the robot with a controller, run in the root of your ROS2 workspace:
+
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+ros2 run remote_controller_pkg remote_control_robot
 ```
 
 Now enjoy the tennis court with the robot.
