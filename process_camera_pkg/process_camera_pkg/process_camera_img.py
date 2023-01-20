@@ -14,7 +14,7 @@ class ImageParser(Node):
     def __init__(self):
         # Create node
         super().__init__('image_parser')
-        self.declare_parameter('display_mode',False)
+        self.declare_parameter('display_mode',True)
         self.debug_mode = self.get_parameter('display_mode').get_parameter_value().bool_value
         
         # Create camera subscriber

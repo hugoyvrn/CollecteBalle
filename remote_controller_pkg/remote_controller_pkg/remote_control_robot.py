@@ -20,6 +20,7 @@ acquisition_frequency = 30
 
 # -----------------------------------------------------------------------------------------------------------------------
 
+
 def select_devices(device_dir='/dev/input'):
     """
     This function will search the controler available in /dev/input and ask the user which one will be used.
@@ -36,20 +37,22 @@ def select_devices(device_dir='/dev/input'):
 
     # Get all the detected input devices and sorted them
     devices = sorted(list_devices(device_dir), key=devicenum)
-    
+
     # Convert them into InputDevice object
     devices = [InputDevice(path) for path in devices]
-    
+
     # If no devices are detected then send an error to stop the programm
     if not devices:
         msg = 'error: no input devices found (do you have rw permission on %s/*?)'
         print(msg % device_dir, file=sys.stderr)
         sys.exit(1)
-    
+
     # Print in the terminal the devices list
     dev_format = '{0:<3} {1.path:<20} {1.name:<35} {1.phys:<35} {1.uniq:<4}'
-    dev_lines = [dev_format.format(num, dev) for num, dev in enumerate(devices)]
-    print('ID  {:<20} {:<35} {:<35} {}'.format('Device', 'Name', 'Phys', 'Uniq'))
+    dev_lines = [dev_format.format(num, dev)
+                 for num, dev in enumerate(devices)]
+    print('ID  {:<20} {:<35} {:<35} {}'.format(
+        'Device', 'Name', 'Phys', 'Uniq'))
     print('-' * len(max(dev_lines, key=len)))
     print('\n'.join(dev_lines))
     print()
@@ -74,73 +77,69 @@ def select_devices(device_dir='/dev/input'):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
+
 class ControlPublisher(Node):
 
-    def __init__(self,fd_to_device):
+    def __init__(self, fd_to_device):
         super().__init__('remote_controller_node')
         self.fd_to_device = fd_to_device
         self.msg = Twist()
-        self.publisher = self.create_publisher(Twist, '/demo/cmd_vel', 10)
-        self.publisher.publish(self.msg)
-        self.acquisition_loop()
+        self.cmd_vel_publisher = self.create_publisher(
+            Twist, '/demo/cmd_vel', 10)
+        self.cmd_vel_publisher.publish(self.msg)
+        timer_period = .01  # s
+        self.timer = self.create_timer(
+            timer_period, self.acquisition_loop_callback)
 
-    def acquisition_loop(self):
-        linear_speed_state = 0
-        while True:
-            # controler input acquisition with a time_break (if no new command then break => avoid blocking function)
-            r, w, e = select.select(self.fd_to_device, [], [], 0.5/acquisition_frequency)
-            for fd in r:
-                # When a new event is detected
-                for event in self.fd_to_device[fd].read():
-                    # Check if the event is not an info like sync (if not its an input)
-                    if event.type != ecodes.EV_SYN:
-                        if int(event.code)==311 and int(event.value)==1:
-                            self.msg.angular.z = -1*MAX_ANG_VEL
-                            self.publisher.publish(self.msg)
-                        if int(event.code)==311 and int(event.value)==0:
-                            self.msg.angular.z = MAX_ANG_VEL
-                            self.publisher.publish(self.msg)
-                            self.msg.angular.z = 0.
-                            self.publisher.publish(self.msg)
-                        if int(event.code)==310 and int(event.value)==1:
-                            self.msg.angular.z = MAX_ANG_VEL
-                            self.publisher.publish(self.msg)
-                        if int(event.code)==310 and int(event.value)==0:
-                            self.msg.angular.z = -1*MAX_ANG_VEL
-                            self.publisher.publish(self.msg)
-                            self.msg.angular.z = 0.
-                            self.publisher.publish(self.msg)
-                        if int(event.code)==17 and int(event.value)==1:
-                            linear_speed_state = -1
-                            self.msg.linear.x = -1*MAX_LIN_VEL
-                            self.publisher.publish(self.msg)
-                        if int(event.code)==17 and int(event.value)==0:
-                            if linear_speed_state ==1:
-                                self.msg.linear.x = -1*MAX_LIN_VEL
-                                self.publisher.publish(self.msg)
-                                time.sleep(5./acquisition_frequency)
-                            if linear_speed_state ==-1:
-                                self.msg.linear.x = MAX_LIN_VEL
-                                self.publisher.publish(self.msg)
-                                time.sleep(5./acquisition_frequency)
-                            self.msg.linear.x = 0.
-                            self.publisher.publish(self.msg)
-                            linear_speed_state = 0
-                        if int(event.code)==17 and int(event.value)==-1:
-                            linear_speed_state = 1
-                            self.msg.linear.x = MAX_LIN_VEL
-                            self.publisher.publish(self.msg)
+        self.linear_speed_state = 0
 
-                        
+    def handle_event(self, event):
+        if int(event.code) == 311:
+            if int(event.value) == 1:
+                self.msg.angular.z = -1*MAX_ANG_VEL
+            elif int(event.value) == 0:
+                self.msg.angular.z = MAX_ANG_VEL
+                self.msg.angular.z = 0.
+        if int(event.code) == 310:
+            if int(event.value) == 1:
+                self.msg.angular.z = MAX_ANG_VEL
+            elif int(event.value) == 0:
+                self.msg.angular.z = -1*MAX_ANG_VEL
+                self.msg.angular.z = 0.
+        if int(event.code) == 17:
+            if int(event.value) == 1:
+                self.linear_speed_state = -1
+                self.msg.linear.x = -1*MAX_LIN_VEL
+            elif int(event.value) == 0:
+                if self.linear_speed_state == 1:
+                    self.msg.linear.x = -1*MAX_LIN_VEL
+                    time.sleep(5./acquisition_frequency)
+                if self.linear_speed_state == -1:
+                    self.msg.linear.x = MAX_LIN_VEL
+                    time.sleep(5./acquisition_frequency)
+                self.msg.linear.x = 0.
+                self.linear_speed_state = 0
+            elif int(event.value) == -1:
+                self.linear_speed_state = 1
+                self.msg.linear.x = MAX_LIN_VEL
 
-    def timer_callback(self):
-        msg = String()
-        msg.data = 'Hello World: %d' % self.i
-        self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg.data)
-        self.i += 1
+    def acquisition_loop_callback(self):
+        # controler input acquisition with a time_break (if no new command then break => avoid blocking function)
+        r, w, e = select.select(self.fd_to_device, [],
+                                [], 0.5/acquisition_frequency)
+        for fd in r:
+            # When a new event is detected
+            for event in self.fd_to_device[fd].read():
+                # Check if the event is not an info like sync (if not its an input)
+                if event.type != ecodes.EV_SYN:
+                    self.handle_event(event)
+                else:
+                    self.msg = Twist()
+            self.cmd_vel_publisher.publish(self.msg)
+
 
 # -----------------------------------------------------------------------------------------------------------------------
+
 
 def main(args=None):
     devices = select_devices()
